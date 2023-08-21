@@ -23,18 +23,36 @@ function calculate(weight, grades) {
 }
 
 app.post('/calculate/*', function(req, res) {
-  const user = req.body.body.user; // Access the "user" field
-  const courses = req.body.body.courses; // Access the "courses" array
-
-  // Add your code here to process the user and courses data
-
-  res.json({ success: 'post call succeed!', user: user, courses: courses });
+  // Add your code here
+  res.json({success: 'post call succeed!', url: req.url, body: req.body})
 });
 
 
 
 app.post('/calculate', function(req, res) {
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
+  const requestData = req.body.body; // Extract the "body" field from the request
+
+  // Initialize an array to store calculated grades for each section
+  const calculatedGrades = [];
+
+  // Loop through each course in the requestData
+  requestData.courses.forEach(course => {
+    // Loop through each section in the current course
+    course.sections.forEach(section => {
+      // Extract the weight and grades for the current section
+      const weight = section.weight;
+      const grades = section.grades;
+
+      // Perform your calculation based on weight and grades
+      const calculatedGrade = calculate(weight, grades);
+
+      // Add calculated grade to list
+      calculatedGrades.push(calculatedGrade);
+    });
+  });
+
+  // Respond with the calculated grades
+  res.json({ success: true, calculatedGrades });
 });
 
 
