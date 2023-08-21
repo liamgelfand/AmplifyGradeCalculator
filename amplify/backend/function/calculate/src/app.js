@@ -22,37 +22,19 @@ function calculate(weight, grades) {
   return weightedAverage;
 }
 
+app.post('/calculate/*', function(req, res) {
+  const user = req.body.body.user; // Access the "user" field
+  const courses = req.body.body.courses; // Access the "courses" array
+
+  // Add your code here to process the user and courses data
+
+  res.json({ success: 'post call succeed!', user: user, courses: courses });
+});
+
+
+
 app.post('/calculate', function(req, res) {
-  const requestData = req.body.body; // Extract the "body" field from the request
-
-  // Initialize an array to store calculated grades for each section
-  const calculatedGrades = [];
-
-  // Loop through each course in the requestData
-  requestData.courses.forEach(course => {
-    // Loop through each section in the current course
-    course.sections.forEach(section => {
-      // Extract the weight and grades for the current section
-      const weight = section.weight;
-      const grades = section.grades;
-
-      // Perform your calculation based on weight and grades
-      const calculatedGrade = calculate(weight, grades);
-
-      // Create an object to represent the calculated result for this section
-      const sectionResult = {
-        courseName: course.courseName,
-        sectionName: section.sectionName,
-        calculatedGrade: calculatedGrade
-      };
-
-      // Add the sectionResult to the calculatedGrades array
-      calculatedGrades.push(sectionResult);
-    });
-  });
-
-  // Respond with the calculated grades
-  res.json({ success: true, calculatedGrades });
+  res.json({success: 'post call succeed!', url: req.url, body: req.body})
 });
 
 
@@ -75,11 +57,6 @@ app.get('/calculate/*', function(req, res) {
 /****************************
 * Example post method *
 ****************************/
-
-app.post('/calculate/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
-});
 
 /****************************
 * Example put method *

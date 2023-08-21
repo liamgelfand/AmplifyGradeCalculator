@@ -81,7 +81,17 @@ export default function App() {
       .catch((error) => {
         console.error('Error fetching calculated grade:', error);
       });
+
+    // API.post('GradeCalculatorAPI', '/calculate', objectToSend)
+    // .then((response) => {
+    //   console.log('Data sent successfully:', response);
+    //   // Update state or perform any other necessary actions
+    // })
+    // .catch((error) => {
+    //   console.error('Error fetching calculated grade:', error);
+    // });
   }
+
 
   const changeText = (e) => {
     setStudentName(e.target.value);
@@ -170,6 +180,6 @@ export default function App() {
       </form>
     </div>
   );
-}  
+}
    
 
