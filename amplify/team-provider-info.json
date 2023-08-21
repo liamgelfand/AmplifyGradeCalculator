@@ -1,0 +1,29 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-gradecalculator-dev-153358-authRole",
+      "UnauthRoleArn": "arn:aws:iam::100771316498:role/amplify-gradecalculator-dev-153358-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::100771316498:role/amplify-gradecalculator-dev-153358-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-gradecalculator-dev-153358-deployment",
+      "UnauthRoleName": "amplify-gradecalculator-dev-153358-unauthRole",
+      "StackName": "amplify-gradecalculator-dev-153358",
+      "StackId": "arn:aws:cloudformation:us-east-1:100771316498:stack/amplify-gradecalculator-dev-153358/835377b0-3f90-11ee-8e79-0a948acd0f3b",
+      "AmplifyAppId": "d2r3w98lzett2l"
+    },
+    "categories": {
+      "auth": {
+        "gradecalculatorea3c2523": {}
+      },
+      "function": {
+        "calculate": {
+          "deploymentBucketName": "amplify-gradecalculator-dev-153358-deployment",
+          "s3Key": "amplify-builds/calculate-47476e7a594c4f723850-build.zip"
+        }
+      },
+      "api": {
+        "GradeCalculatorAPI": {}
+      }
+    }
+  }
+}

@@ -1,38 +1,134 @@
-.App {
-  text-align: center;
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+/* App.css */
+
+/* Global Styles */
+body {
+  background-color: #283655;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Main Container */
+.large-box {
   display: flex;
   flex-direction: column;
+  background-color: #4D648D;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 50px auto;
+  max-width: 800px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #A3C5E2;
+  font-size: 40px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: left; /* Center horizontally */
+}
+
+.user-name {
+  font-size: 25px;
+  max-width: 20vh;
+  border-radius: 4px;
+  border-color: #f7f7f7;
+}
+
+.add-class-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin: 8px 8px 8px 0px;
+  font-size: 15px;
+}
+
+.add-class-button:hover {
+  background-color: #0056b3;
+}
+
+.course-container {
+  background-color: #A3C5E2;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.class-name {
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+/* Course Styles */
+.course {
+  background-color: #ffffff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.section {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.section-input,
+.weight-input,
+.grades-input {
+  flex: 1;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-section-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.add-section-button:hover {
+  background-color: #0056b3;
+}
+/* Final Grade Styles */
+.final-grade {
+  margin-left: 10px;;
+  padding-bottom: 10px;
+  font-weight: bold;
+  color: #f7f7f7;
+}
+
+/* Submit Button Styles */
+.submit-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.submit-button:hover {
+  background-color: #218838;
 }
