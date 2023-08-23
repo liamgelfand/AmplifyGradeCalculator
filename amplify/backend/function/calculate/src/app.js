@@ -24,10 +24,31 @@ function calculate(weight, grades) {
 
 app.post('/calculate/*', function(req, res) {
   // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
+  // res.json({success: 'post call succeed!', url: req.url, body: req.body})
+  try {
+    const requestData = req.body;
+    const name = requestData.student;
+    const courses = requestData.courses;
+
+    for(const course of courses) {
+      const courseName = course.courseName;
+      const sections = course.assignments;
+
+      for(const section of sections) {
+        const sectionName = section.section;
+        const weight = section.weight;
+        const grades = section.grades;
+        console.log(`Student: ${name}, Course: ${courseName}, Section: ${sectionName}, weight: ${weight}, grades: ${grades}`)
+      }
+    }
+    res.status(200).json({success: 'post call succeeded', studentName})
+  } catch (error) {
+    console.error('Error processing data', error);
+    res.status(500).json({ error:'An error occured while processing data'})
+  }
 });
 
-
+// Failed method ------------------------------------------------------
 
 app.post('/calculate', function(req, res) {
   const requestData = req.body.body; // Extract the "body" field from the request
@@ -55,7 +76,7 @@ app.post('/calculate', function(req, res) {
   res.json({ success: true, calculatedGrades });
 });
 
-
+// Amplify generated methods----------------------------------------------------------------------
 
 
 /**********************
