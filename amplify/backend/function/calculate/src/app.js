@@ -34,12 +34,7 @@ app.post('/calculate/*', function(req, res) {
       const courseName = course.courseName;
       const sections = course.assignments;
 
-      for(const section of sections) {
-        const sectionName = section.section;
-        const weight = section.weight;
-        const grades = section.grades;
-        console.log(`Student: ${name}, Course: ${courseName}, Section: ${sectionName}, weight: ${weight}, grades: ${grades}`)
-      }
+      console.log('Data', courseName, sections)
     }
     res.status(200).json({success: 'post call succeeded', studentName})
   } catch (error) {
