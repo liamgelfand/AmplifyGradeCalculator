@@ -30,12 +30,8 @@ app.post('/calculate/*', function(req, res) {
     const name = requestData.student;
     const courses = requestData.courses;
 
-    for(const course of courses) {
-      const courseName = course.courseName;
-      const sections = course.assignments;
+    console.log('Data', courses)
 
-      console.log('Data', courseName, sections)
-    }
     res.status(200).json({success: 'post call succeeded', studentName})
   } catch (error) {
     console.error('Error processing data', error);

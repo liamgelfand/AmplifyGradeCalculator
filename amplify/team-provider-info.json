@@ -18,7 +18,7 @@
       "function": {
         "calculate": {
           "deploymentBucketName": "amplify-gradecalculator-dev-153358-deployment",
-          "s3Key": "amplify-builds/calculate-346c36312f5447566357-build.zip"
+          "s3Key": "amplify-builds/calculate-75367370713449353251-build.zip"
         }
       },
       "api": {
