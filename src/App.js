@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Amplify, API } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import './App.css';
@@ -48,8 +48,8 @@ export default function App() {
   function submit(e) {
     e.preventDefault();
 
-    const response = API.get('GradeCalculatorAPI', '/calculate')
-    console.log({response})
+    // const response = API.get('GradeCalculatorAPI', '/calculate')
+    // console.log({response})
     
     let classData = [...classes];
 

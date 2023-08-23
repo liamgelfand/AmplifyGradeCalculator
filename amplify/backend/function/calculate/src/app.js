@@ -24,20 +24,19 @@ function calculate(weight, grades) {
 
 app.post('/calculate/*', function(req, res) {
   // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
-  // try {
-  //   const requestData = req.body;
-  //   const studentName = requestData.student;
-  //   const courses = requestData.courses;
+  // res.json({success: 'post call succeed!', url: req.url, body: req.body})
+  try {
+    const requestData = req.body;
+    const studentName = requestData.student;
+    const courses = requestData.courses;
+    // works so far
+    const sections = courses.assignments;
 
-  //   // console.log('Data', studentName)
-  //   // console.log('Data', courses)
-
-  //   res.status(200).json({success: 'post call succeeded', requestData})
-  // } catch (error) {
-  //   console.error('Error processing data', error);
-  //   res.status(500).json({ error:'An error occured while processing data'})
-  // }
+    res.status(200).json({success: 'post call succeeded', studentName, courses, sections})
+  } catch (error) {
+    console.error('Error processing data', error);
+    res.status(500).json({ error:'An error occured while processing data'})
+  }
 });
 
 // Failed method ------------------------------------------------------
