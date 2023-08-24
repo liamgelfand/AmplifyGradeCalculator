@@ -1,11 +1,12 @@
 import React from 'react';
 import { Amplify, API } from 'aws-amplify';
 import awsconfig from './aws-exports';
-import './App.css';
+import './App.css'; import {Helmet} from "react-helmet";
 
 Amplify.configure(awsconfig);
 
 export default function App() {
+  
   // State to keep track of the number of assignments
   const [numAssignments, setNumAssignments] = React.useState(0);
 
@@ -52,6 +53,7 @@ export default function App() {
     // console.log({response})
     
     let classData = [...classes];
+    let updatedClasses;
 
     let objectToSend = {
       body: {
@@ -63,15 +65,27 @@ export default function App() {
     console.log(objectToSend)
     
     API.post('GradeCalculatorAPI', '/calculate/test', objectToSend)
-      .then((response) => {
-        console.log('Data sent successfully:', response);
+    .then((response) => {
+      console.log('Data sent successfully:', response);
 
-        // Update state or perform any other necessary actions
-      })
-      .catch((error) => {
-        console.error('Error fetching calculated grade:', error);
+      // Calculate and update total grades for each course based on the server response
+      response.newCourses.forEach((course, courseIndex) => {
+        let calculatedTotalGrade = 0;
+        course.sections.forEach((section) => {
+          calculatedTotalGrade += parseFloat(section.finalGrade);
+        });
+
+        const updatedClasses = [...classes];
+        updatedClasses[courseIndex].totalGrade = calculatedTotalGrade.toFixed(3);
+
+        setClasses(updatedClasses);
       });
-  }
+
+  })
+  .catch((error) => {
+    console.error('Error fetching calculated grade', error);
+  });
+}
 
 
   const changeText = (e) => {
@@ -80,7 +94,12 @@ export default function App() {
     }
   
     return (
+      
       <div className="large-box">
+        <Helmet>
+        <meta charSet='utf-8' />
+        <title>Grade Calculator</title>
+        </Helmet>
         <h1 className="title">Grade Calculator</h1>
         <form onSubmit={(e) => submit(e)}>
           {/* Input field for entering student's name */}

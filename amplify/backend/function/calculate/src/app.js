@@ -14,29 +14,39 @@ app.use(function(req, res, next) {
   next()
 });
 
-function calculate(weight, grades) {
-  // Calculate the weighted average
-  const weightedSum = grades.reduce((sum, grade) => sum + grade, 0);
-  const weightedAverage = (weightedSum / grades.length) * (weight / 100);
+function prepareArray(inputString) {
+  const noSpaceString = inputString.replace(/\s+/g, "");
+  const preparedString = noSpaceString.split(',').map(Number);
+  return preparedString;
+}
 
-  return weightedAverage;
+// Function to calculate the final grade based on weights and grades
+function calculateGrade(weight, grades) {
+  const preparedArray = prepareArray(grades);
+  const preparedWeight = parseFloat(weight);
+  const sum = preparedArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+  const total = (sum / preparedArray.length) * (preparedWeight / 100);
+  const roundedTotal = total.toFixed(3);
+  return roundedTotal;
 }
 
 app.post('/calculate/*', function(req, res) {
-  // Add your code here
-  // res.json({success: 'post call succeed!', url: req.url, body: req.body})
-  try {
-    const requestData = req.body;
-    const studentName = requestData.student;
-    const courses = requestData.courses;
-    // works so far
-    const sections = courses.assignments;
+  const requestData = req.body; // Extract the "body" field from the request
+  const courses = requestData.courses;
+  // Initialize an array to store grades and weights
+  const finalGrade = 0;
 
-    res.status(200).json({success: 'post call succeeded', studentName, courses, sections})
-  } catch (error) {
-    console.error('Error processing data', error);
-    res.status(500).json({ error:'An error occured while processing data'})
-  }
+  const newCourses = courses.map(course => ({
+    courseName: course.name,
+    sections: course.assignments.map(assignment => ({
+      sectionName: assignment.section,
+      weight: assignment.weight,
+      grades: assignment.grades,
+      finalGrade: calculateGrade(assignment.weight, assignment.grades)
+    }))
+  }));
+  // Respond with the grades and weights
+  res.json({ success: true, newCourses });
 });
 
 // Failed method ------------------------------------------------------
